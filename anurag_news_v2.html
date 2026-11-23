@@ -45,57 +45,57 @@
     ::-webkit-scrollbar-thumb:hover {
       background: rgba(148, 163, 184, 0.55);
     }
-      <!-- Subtle Quick Date Shortcuts & Snapshot Actions -->
-      <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 dark:text-zinc-400 pt-0.5">
-        <div class="flex flex-wrap items-center gap-2">
-          <span>Quick dates:</span>
-          <button id="quickTodayBtn" type="button" class="underline hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer">Today</button>
-          <span>•</span>
-          <button id="quickArchiveBtn" type="button" class="underline hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer">20/11/2020</button>
-          <span>•</span>
-          <button id="toggleRangeBtn" type="button" class="underline hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer">Date range</button>
-        </div>
-        <div class="flex flex-wrap items-center gap-3">
-          <button id="shareLinkBtn" type="button" class="underline hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer">Share link</button>
-          <button id="resetFiltersBtn" type="button" class="underline hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer">Reset filters</button>
-        </div>
+  </style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900 dark:bg-zinc-950 dark:text-zinc-100 font-sans antialiased transition-colors duration-150">
+
+  <!-- Top Bar -->
+  <header class="sticky top-0 z-30 border-b border-slate-200/80 dark:border-zinc-800/80 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md">
+    <div class="max-w-3xl mx-auto px-4 h-13 flex items-center justify-between gap-3 py-2.5">
+      <div class="flex items-center gap-2">
+        <span class="w-7 h-7 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-bold text-xs flex items-center justify-center">
+          AN
+        </span>
+        <span class="font-bold text-sm sm:text-base tracking-tight">Anurag news</span>
+        <span class="hidden sm:inline-block text-[11px] text-slate-400 dark:text-zinc-500">Local PC cache • No AI summaries</span>
       </div>
 
-      <!-- Optional Custom Date Range Row (From - To) -->
-      <div id="dateRangeRow" class="hidden grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-slate-100 dark:border-zinc-800/80">
-        <div class="flex items-center gap-2">
-          <label for="fromDateInput" class="text-[11px] text-slate-500 dark:text-zinc-400 shrink-0">From:</label>
-          <input
-            id="fromDateInput"
-            type="text"
-            placeholder="DD/MM/YYYY"
-            class="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-zinc-700 bg-slate-50 dark:bg-zinc-950 focus:outline-none focus:ring-1 focus:ring-emerald-500"
-          />
-        </div>
-        <div class="flex items-center gap-2">
-          <label for="toDateInput" class="text-[11px] text-slate-500 dark:text-zinc-400 shrink-0">To:</label>
-          <input
-            id="toDateInput"
-            type="text"
-            placeholder="DD/MM/YYYY"
-            class="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-zinc-700 bg-slate-50 dark:bg-zinc-950 focus:outline-none focus:ring-1 focus:ring-emerald-500"
-          />
-        </div>
-      </div>
-    </section>
+      <div class="flex items-center gap-1.5">
+        <span id="providerBadge" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          GDELT Keyless
+        </span>
 
-    <!-- Results Summary Strip -->
-    <div id="resultsMeta" class="hidden flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 dark:text-zinc-400 px-1">
-      <div class="flex flex-wrap items-center gap-1.5">
-        <span>Showing <strong id="shownCount" class="text-slate-800 dark:text-zinc-200">0</strong> of <strong id="totalResultsCount" class="text-slate-800 dark:text-zinc-200">0</strong> headlines</span>
-        <span id="dateTag" class="px-2 py-0.5 rounded bg-slate-200/70 dark:bg-zinc-800 text-[11px] text-slate-700 dark:text-zinc-300"></span>
-        <span id="cacheAgeTag" class="px-2 py-0.5 rounded bg-sky-500/10 text-[11px] text-sky-700 dark:text-sky-300"></span>
-      </div>
-      <div class="flex flex-wrap items-center gap-2 text-[11px]">
-        <span id="sourceTag"></span>
-        <button id="refreshLiveBtn" type="button" class="underline hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer">Refresh Live</button>
-        <button id="copySnapshotBtn" type="button" class="underline hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer">Copy Text</button>
-        <button id="exportJsonBtn" type="button" class="underline hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer">JSON</button>
+        <!-- Dark / Light Toggle -->
+        <button
+          id="themeToggleBtn"
+          type="button"
+          aria-label="Toggle Dark or Light Mode"
+          title="Toggle Dark / Light Mode"
+          class="p-2 rounded-lg border border-slate-200 dark:border-zinc-800 hover:bg-slate-100 dark:hover:bg-zinc-900 text-slate-600 dark:text-zinc-300 transition-colors cursor-pointer"
+        >
+          <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+
+        <!-- Settings Button -->
+        <button
+          id="openSettingsBtn"
+          type="button"
+          aria-label="Open Settings"
+          title="Settings & Custom API Key"
+          class="p-2 rounded-lg border border-slate-200 dark:border-zinc-800 hover:bg-slate-100 dark:hover:bg-zinc-900 text-slate-600 dark:text-zinc-300 transition-colors cursor-pointer"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </button>
       </div>
     </div>
   </header>
@@ -203,16 +203,11 @@
       </div>
 
       <!-- Subtle Quick Date Shortcuts -->
-      <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 dark:text-zinc-400 pt-0.5">
-        <div class="flex flex-wrap items-center gap-2">
-          <span>Quick dates:</span>
-          <button id="quickTodayBtn" type="button" class="underline hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer">Today</button>
-          <span>•</span>
-          <button id="quickArchiveBtn" type="button" class="underline hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer">20/11/2020</button>
-        </div>
-        <button id="resetFiltersBtn" type="button" class="underline hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer">
-          Reset filters
-        </button>
+      <div class="flex flex-wrap items-center gap-2 text-[11px] text-slate-500 dark:text-zinc-400 pt-0.5">
+        <span>Quick dates:</span>
+        <button id="quickTodayBtn" type="button" class="underline hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer">Today</button>
+        <span>•</span>
+        <button id="quickArchiveBtn" type="button" class="underline hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer">20/11/2020</button>
       </div>
     </section>
 
@@ -295,19 +290,8 @@
         </div>
 
         <p id="apiKeyStatusNote" class="text-[11px] text-slate-500 dark:text-zinc-400">
-          Never hardcoded in source. If a historical date or range is entered, GDELT archive search is used automatically.
+          Never hardcoded in source. If a historical date is entered, GDELT archive search is used automatically.
         </p>
-
-        <!-- Muted Domains Manager -->
-        <div class="pt-2 border-t border-slate-100 dark:border-zinc-800 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-medium text-slate-700 dark:text-zinc-300">Muted Domains</span>
-            <span id="mutedCountBadge" class="text-[11px] text-slate-400 dark:text-zinc-500">0 muted</span>
-          </div>
-          <div id="mutedDomainsList" class="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto">
-            <!-- Muted domain chips rendered here -->
-          </div>
-        </div>
       </div>
 
       <!-- Install & Icon Setup Helper -->
@@ -334,18 +318,13 @@
         <p id="manifestCopyFeedback" class="hidden text-[11px] font-medium text-emerald-600 dark:text-emerald-400"></p>
       </div>
 
-      <div class="flex items-center justify-between gap-2 pt-2 border-t border-slate-100 dark:border-zinc-800">
-        <button id="clearCacheBtn" type="button" class="px-3 py-1.5 rounded-xl text-xs font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-500/10 cursor-pointer">
-          Clear PC Cache
+      <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100 dark:border-zinc-800">
+        <button id="cancelSettingsBtn" type="button" class="px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800 cursor-pointer">
+          Cancel
         </button>
-        <div class="flex items-center gap-2">
-          <button id="cancelSettingsBtn" type="button" class="px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800 cursor-pointer">
-            Cancel
-          </button>
-          <button id="saveSettingsBtn" type="button" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer">
-            Save
-          </button>
-        </div>
+        <button id="saveSettingsBtn" type="button" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer">
+          Save
+        </button>
       </div>
     </div>
   </div>
@@ -466,8 +445,7 @@
       THEME: 'anuragnews_theme',
       PRESETS: 'anuragnews_presets',
       API: 'anuragnews_api',
-      CACHE: 'anuragnews_pc_cache_v1',
-      MUTED: 'anuragnews_muted_domains_v1'
+      CACHE: 'anuragnews_pc_cache_v1'
     };
 
     const PAGE_SIZE = 20;
@@ -480,9 +458,7 @@
       sort: 'relevant',
       keyword: '',
       presets: [],
-      mutedDomains: [],
       apiConfig: { provider: 'gdelt', apiKey: '' },
-      rawFetchedItems: [],
       articles: [],
       rendered: 0,
       loading: false,
@@ -494,162 +470,96 @@
     function init() {
       initTheme();
       initPresets();
-      initMutedDomains();
       initApiConfig();
-      applyShareQueryParams();
       renderTopics();
       renderPresets();
-      renderMutedDomains();
       bindEvents();
       setupObserver();
     }
 
-    // --- Shareable Link State ---
-    function buildShareUrl() {
-      const url = new URL(window.location.href);
-      const params = new URLSearchParams();
-      if (state.selectedTopics.length) params.set('topics', state.selectedTopics.join(','));
-      const kw = $('keywordInput').value.trim();
-      if (kw) params.set('q', kw);
-      const dt = $('dateInput').value.trim();
-      if (dt) params.set('date', dt);
-      const fromDt = $('fromDateInput').value.trim();
-      const toDt = $('toDateInput').value.trim();
-      if (fromDt) params.set('from', fromDt);
-      if (toDt) params.set('to', toDt);
-      const sort = $('sortSelect').value;
-      if (sort && sort !== 'relevant') params.set('sort', sort);
-      url.search = params.toString();
-      return url.toString();
+    // --- Theme ---
+    function syncThemeColorMeta(isDark) {
+      const meta = $('themeColorMeta');
+      if (meta) {
+        meta.setAttribute('content', isDark ? '#0f172a' : '#f8fafc');
+      }
     }
 
-    function applyShareQueryParams() {
+    function initTheme() {
       try {
-        const params = new URLSearchParams(window.location.search);
-        const topicsParam = params.get('topics');
-        if (topicsParam !== null) {
-          const validIds = new Set(TOPICS.map((t) => t.id));
-          state.selectedTopics = topicsParam
-            .split(',')
-            .map((s) => s.trim())
-            .filter((id) => validIds.has(id));
-        }
-        const q = params.get('q');
-        if (q) {
-          $('keywordInput').value = q;
-          state.keyword = q;
-        }
-        const dateParam = params.get('date');
-        if (dateParam) $('dateInput').value = dateParam;
-
-        const fromParam = params.get('from');
-        const toParam = params.get('to');
-        if (fromParam || toParam) {
-          $('dateRangeRow').classList.remove('hidden');
-          $('dateRangeRow').classList.add('grid');
-          if (fromParam) $('fromDateInput').value = fromParam;
-          if (toParam) $('toDateInput').value = toParam;
-        }
-
-        const sortParam = params.get('sort');
-        if (sortParam && ['relevant', 'hot', 'old'].includes(sortParam)) {
-          $('sortSelect').value = sortParam;
-          state.sort = sortParam;
-        }
-      } catch (_) {}
-    }
-
-    function copyShareLink() {
-      const link = buildShareUrl();
-      try {
-        window.history.replaceState({}, '', link);
-      } catch (_) {}
-
-      let copied = false;
-      try {
-        const temp = document.createElement('textarea');
-        temp.value = link;
-        temp.setAttribute('readonly', '');
-        temp.style.position = 'fixed';
-        temp.style.opacity = '0';
-        document.body.appendChild(temp);
-        temp.select();
-        copied = document.execCommand('copy');
-        document.body.removeChild(temp);
+        const saved = localStorage.getItem(STORAGE.THEME);
+        const dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', dark);
+        syncThemeColorMeta(dark);
       } catch (_) {
-        copied = false;
-      }
-
-      setStatus(copied ? 'Shareable link copied to clipboard.' : `Share link ready: ${link}`, 'success');
-    }
-
-    // --- Muted Domains ---
-    function initMutedDomains() {
-      try {
-        const raw = localStorage.getItem(STORAGE.MUTED);
-        const arr = raw ? JSON.parse(raw) : [];
-        state.mutedDomains = Array.isArray(arr) ? arr.map((d) => String(d).toLowerCase()) : [];
-      } catch (_) {
-        state.mutedDomains = [];
+        document.documentElement.classList.add('dark');
+        syncThemeColorMeta(true);
       }
     }
 
-    function persistMutedDomains() {
+    function toggleTheme() {
+      const dark = document.documentElement.classList.toggle('dark');
+      syncThemeColorMeta(dark);
       try {
-        localStorage.setItem(STORAGE.MUTED, JSON.stringify(state.mutedDomains));
+        localStorage.setItem(STORAGE.THEME, dark ? 'dark' : 'light');
       } catch (_) {}
     }
 
-    function muteDomain(domain) {
-      const clean = String(domain || '').toLowerCase().replace(/^www\./, '').trim();
-      if (!clean) return;
-      if (!state.mutedDomains.includes(clean)) {
-        state.mutedDomains.push(clean);
-        persistMutedDomains();
-        renderMutedDomains();
-      }
-      if (state.rawFetchedItems.length) {
-        reprocessCurrentArticles();
-      }
-      setStatus(`Muted domain "${clean}".`, 'info');
-    }
-
-    function unmuteDomain(domain) {
-      const clean = String(domain || '').toLowerCase();
-      state.mutedDomains = state.mutedDomains.filter((d) => d !== clean);
-      persistMutedDomains();
-      renderMutedDomains();
-      if (state.rawFetchedItems.length) {
-        reprocessCurrentArticles();
+    // --- Presets ---
+    function initPresets() {
+      try {
+        const raw = localStorage.getItem(STORAGE.PRESETS);
+        state.presets = raw ? JSON.parse(raw) : [...DEFAULT_PRESETS];
+      } catch (_) {
+        state.presets = [...DEFAULT_PRESETS];
       }
     }
 
-    function renderMutedDomains() {
-      const list = $('mutedDomainsList');
-      const badge = $('mutedCountBadge');
-      if (!list || !badge) return;
+    function persistPresets() {
+      try {
+        localStorage.setItem(STORAGE.PRESETS, JSON.stringify(state.presets));
+      } catch (_) {}
+    }
 
-      badge.textContent = `${state.mutedDomains.length} muted`;
-      list.innerHTML = '';
+    function renderPresets() {
+      const box = $('presetsList');
+      box.innerHTML = '';
 
-      if (!state.mutedDomains.length) {
-        list.innerHTML = `<span class="text-[11px] text-slate-400 dark:text-zinc-500">No muted domains yet. Use "Mute" on any headline.</span>`;
+      if (!state.presets.length) {
+        box.innerHTML = `<span class="text-xs text-slate-400 dark:text-zinc-500">No presets saved</span>`;
         return;
       }
 
-      state.mutedDomains.forEach((domain) => {
-        const chip = document.createElement('span');
-        chip.className = 'inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[11px] bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-200';
-        const txt = document.createElement('span');
-        txt.textContent = domain;
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.textContent = '×';
-        btn.className = 'hover:text-rose-500 cursor-pointer';
-        btn.addEventListener('click', () => unmuteDomain(domain));
-        chip.appendChild(txt);
-        chip.appendChild(btn);
-        list.appendChild(chip);
+      state.presets.forEach((p) => {
+        const pill = document.createElement('div');
+        pill.className = 'inline-flex items-center rounded-lg border border-slate-200 dark:border-zinc-700/80 bg-slate-50 dark:bg-zinc-950 text-xs overflow-hidden';
+
+        const loadBtn = document.createElement('button');
+        loadBtn.type = 'button';
+        loadBtn.className = 'px-2.5 py-1 font-medium hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer';
+        loadBtn.textContent = p.name;
+        loadBtn.addEventListener('click', () => {
+          state.selectedTopics = Array.isArray(p.topics) ? [...p.topics] : [];
+          $('sortSelect').value = p.sort || 'relevant';
+          $('keywordInput').value = p.keyword || '';
+          renderTopics();
+          setStatus(`Loaded preset "${p.name}". Click Scour News to fetch.`, 'info');
+        });
+
+        const delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.ariaLabel = `Delete ${p.name}`;
+        delBtn.className = 'px-1.5 py-1 text-slate-400 hover:text-rose-500 border-l border-slate-200 dark:border-zinc-800 cursor-pointer';
+        delBtn.textContent = '×';
+        delBtn.addEventListener('click', () => {
+          state.presets = state.presets.filter((item) => item.id !== p.id);
+          persistPresets();
+          renderPresets();
+        });
+
+        pill.appendChild(loadBtn);
+        pill.appendChild(delBtn);
+        box.appendChild(pill);
       });
     }
 
@@ -746,129 +656,14 @@
       $('providerSelect').value = state.apiConfig.provider;
       $('apiKeyInput').value = state.apiConfig.apiKey;
       $('manifestCopyFeedback').classList.add('hidden');
-      renderMutedDomains();
       toggleKeyField();
       $('settingsModal').classList.remove('hidden');
       $('settingsModal').classList.add('flex');
     }
-    // --- Date Parsing (DD/MM/YYYY + Range helper) ---
-    function parseDateInput(rawVal) {
-      const trimmed = (rawVal || '').trim();
-      if (!trimmed) return { isArchive: false, dateObj: null, label: 'Today / Recent', error: '' };
 
-      const match = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(trimmed);
-      if (!match) {
-        return {
-          isArchive: false,
-          dateObj: null,
-          label: '',
-          error: 'Use DD/MM/YYYY format (for example: 20/11/2020) or leave blank for Today.'
-        };
-      }
-
-      const day = parseInt(match[1], 10);
-      const month = parseInt(match[2], 10);
-      const year = parseInt(match[3], 10);
-
-      const candidate = new Date(Date.UTC(year, month - 1, day, 12, 0, 0));
-      const validCalendarDate =
-        candidate.getUTCFullYear() === year &&
-        candidate.getUTCMonth() === month - 1 &&
-        candidate.getUTCDate() === day;
-
-      if (!validCalendarDate || year < 2015 || year > 2100) {
-        return {
-          isArchive: false,
-          dateObj: null,
-          label: '',
-          error: 'Enter a valid calendar date between 2015 and 2100 (e.g. 20/11/2020).'
-        };
-      }
-
-      const dd = String(day).padStart(2, '0');
-      const mm = String(month).padStart(2, '0');
-      return {
-        isArchive: true,
-        dateObj: candidate,
-        label: `${dd}/${mm}/${year}`,
-        error: ''
-      };
-    }
-
-    function parseRangeDates() {
-      const fromRaw = $('fromDateInput').value.trim();
-      const toRaw = $('toDateInput').value.trim();
-      if (!fromRaw && !toRaw) {
-        return { active: false, fromInfo: null, toInfo: null, error: '' };
-      }
-      if (!fromRaw || !toRaw) {
-        return { active: false, fromInfo: null, toInfo: null, error: 'Enter both From and To dates in DD/MM/YYYY format.' };
-      }
-
-      const fromInfo = parseDateInput(fromRaw);
-      if (fromInfo.error) return { active: false, fromInfo: null, toInfo: null, error: `From date: ${fromInfo.error}` };
-
-      const toInfo = parseDateInput(toRaw);
-      if (toInfo.error) return { active: false, fromInfo: null, toInfo: null, error: `To date: ${toInfo.error}` };
-
-      if (fromInfo.dateObj.getTime() > toInfo.dateObj.getTime()) {
-        return { active: false, fromInfo: null, toInfo: null, error: 'From date must be earlier than or equal to To date.' };
-      }
-
-      return { active: true, fromInfo, toInfo, error: '' };
-    }
-
-    function formatGdeltDateStamp(dateObj, endOfDay = false) {
-      const y = dateObj.getUTCFullYear();
-      const m = String(dateObj.getUTCMonth() + 1).padStart(2, '0');
-      const d = String(dateObj.getUTCDate()).padStart(2, '0');
-      return `${y}${m}${d}${endOfDay ? '235959' : '000000'}`;
-    }
-
-    // --- User PC Local Cache ---
-    function readLocalCache(cacheKey) {
-      try {
-        const raw = localStorage.getItem(STORAGE.CACHE);
-        if (!raw) return null;
-        const map = JSON.parse(raw);
-        const entry = map[cacheKey];
-        if (!entry) return null;
-        const ageMs = Date.now() - (entry.savedAt || 0);
-        if (ageMs > CACHE_TTL_MS) {
-          delete map[cacheKey];
-          localStorage.setItem(STORAGE.CACHE, JSON.stringify(map));
-          return null;
-        }
-        return { articles: entry.articles || null, ageMs };
-      } catch (_) {
-        return null;
-      }
-    }
-
-    function writeLocalCache(cacheKey, articles) {
-      try {
-        const raw = localStorage.getItem(STORAGE.CACHE);
-        const map = raw ? JSON.parse(raw) : {};
-        map[cacheKey] = { savedAt: Date.now(), articles };
-
-        const keys = Object.keys(map);
-        if (keys.length > MAX_CACHE_ENTRIES) {
-          keys
-            .sort((a, b) => (map[a].savedAt || 0) - (map[b].savedAt || 0))
-            .slice(0, keys.length - MAX_CACHE_ENTRIES)
-            .forEach((k) => delete map[k]);
-        }
-
-        localStorage.setItem(STORAGE.CACHE, JSON.stringify(map));
-      } catch (_) {}
-    }
-
-    function formatCacheAge(ageMs) {
-      const mins = Math.max(0, Math.floor(ageMs / 60000));
-      if (mins < 1) return 'Cached <1m ago';
-      if (mins < 60) return `Cached ${mins}m ago`;
-      const hrs = Math.floor(mins / 60);
-      return `Cached ${hrs}h ago`;
+    function closeSettingsModal() {
+      $('settingsModal').classList.add('hidden');
+      $('settingsModal').classList.remove('flex');
     }
 
     function saveSettingsModal() {
@@ -1007,7 +802,12 @@
           throw new Error(`HTTP ${res.status}`);
         }
         return await res.json();
-    async function fetchFromGdelt(queryText, dateInfo, rangeInfo) {
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
+    async function fetchFromGdelt(queryText, dateInfo) {
       const params = new URLSearchParams({
         query: `${queryText} sourcelang:english`,
         mode: 'artlist',
@@ -1016,12 +816,7 @@
         sort: 'DateDesc'
       });
 
-      if (rangeInfo && rangeInfo.active) {
-        const startDay = new Date(Date.UTC(rangeInfo.fromInfo.dateObj.getUTCFullYear(), rangeInfo.fromInfo.dateObj.getUTCMonth(), rangeInfo.fromInfo.dateObj.getUTCDate()));
-        const endDay = new Date(Date.UTC(rangeInfo.toInfo.dateObj.getUTCFullYear(), rangeInfo.toInfo.dateObj.getUTCMonth(), rangeInfo.toInfo.dateObj.getUTCDate()));
-        params.set('startdatetime', formatGdeltDateStamp(startDay, false));
-        params.set('enddatetime', formatGdeltDateStamp(endDay, true));
-      } else if (dateInfo.isArchive && dateInfo.dateObj) {
+      if (dateInfo.isArchive && dateInfo.dateObj) {
         params.set('startdatetime', formatGdeltDateStamp(dateInfo.dateObj, false));
         params.set('enddatetime', formatGdeltDateStamp(dateInfo.dateObj, true));
       }
@@ -1125,109 +920,39 @@
     }
 
     function deduplicateAndSort(rawArticles, sortMode, keyword) {
-      const mutedSet = new Set(state.mutedDomains.map((d) => d.toLowerCase()));
+      const seenTitles = new Set();
       const seenUrls = new Set();
-      const clusters = [];
+      const deduped = [];
 
       for (const item of rawArticles) {
-        const cleanDomain = (item.domain || domainFromUrl(item.url || '')).toLowerCase().replace(/^www\./, '');
-        if (mutedSet.has(cleanDomain)) continue;
-
-        const normUrl = (item.url || '').split('?')[0].toLowerCase();
-        if (normUrl && seenUrls.has(normUrl)) continue;
-        if (normUrl) seenUrls.add(normUrl);
-
         const normTitle = item.title
           .toLowerCase()
           .replace(/[^a-z0-9\s]/g, '')
           .replace(/\s+/g, ' ')
           .trim();
-        if (!normTitle) continue;
+        const normUrl = (item.url || '').split('?')[0].toLowerCase();
 
-        const tokens = new Set(normTitle.split(' ').filter((t) => t.length > 3));
-        const candidate = {
+        if (!normTitle || seenTitles.has(normTitle) || (normUrl && seenUrls.has(normUrl))) {
+          continue;
+        }
+        seenTitles.add(normTitle);
+        if (normUrl) seenUrls.add(normUrl);
+
+        deduped.push({
           ...item,
-          domain: cleanDomain,
-          _score: scoreRelevance(item, keyword),
-          _tokens: tokens,
-          similarSources: []
-        };
-
-        // Group near-duplicate coverage under primary story while keeping count
-        let matchedCluster = null;
-        for (const group of clusters) {
-          if (group.normTitle === normTitle || tokenOverlap(group._tokens, tokens) >= 0.65) {
-            matchedCluster = group;
-            break;
-          }
-        }
-
-        if (matchedCluster) {
-          matchedCluster.similarSources.push({
-            domain: candidate.domain,
-            url: candidate.url,
-            title: candidate.title
-          });
-        } else {
-          clusters.push(candidate);
-        }
+          _score: scoreRelevance(item, keyword)
+        });
       }
 
       if (sortMode === 'hot') {
-        clusters.sort((a, b) => (b.publishedAt || 0) - (a.publishedAt || 0) || b._score - a._score);
+        deduped.sort((a, b) => (b.publishedAt || 0) - (a.publishedAt || 0) || b._score - a._score);
       } else if (sortMode === 'old') {
-        clusters.sort((a, b) => (a.publishedAt || 0) - (b.publishedAt || 0));
+        deduped.sort((a, b) => (a.publishedAt || 0) - (b.publishedAt || 0));
       } else {
-        clusters.sort((a, b) => b._score - a._score || (b.publishedAt || 0) - (a.publishedAt || 0));
+        deduped.sort((a, b) => b._score - a._score || (b.publishedAt || 0) - (a.publishedAt || 0));
       }
 
-      return clusters;
-    }
-
-    function tokenOverlap(setA, setB) {
-      if (!setA.size || !setB.size) return 0;
-      let shared = 0;
-      setA.forEach((tok) => {
-        if (setB.has(tok)) shared += 1;
-      });
-      return shared / Math.min(setA.size, setB.size);
-    }
-
-    function reprocessCurrentArticles() {
-      const processed = deduplicateAndSort(state.rawFetchedItems, state.sort, state.keyword);
-      state.articles = processed;
-      state.rendered = 0;
-      $('feedContainer').innerHTML = '';
-      $('shownCount').textContent = '0';
-      $('totalResultsCount').textContent = String(processed.length);
-      if (processed.length) {
-        renderNextBatch();
-      } else {
-        $('feedContainer').innerHTML = `
-          <div class="p-8 text-center space-y-1">
-            <p class="text-sm font-medium">No visible headlines after filtering/muting</p>
-            <p class="text-xs text-slate-500 dark:text-zinc-400">Adjust muted domains or run a fresh scour.</p>
-          </div>
-        `;
-        $('scrollSentinel').classList.add('hidden');
-      }
-    }
-
-    function copyTextToClipboard(text) {
-      try {
-        const temp = document.createElement('textarea');
-        temp.value = text;
-        temp.setAttribute('readonly', '');
-        temp.style.position = 'fixed';
-        temp.style.opacity = '0';
-        document.body.appendChild(temp);
-        temp.select();
-        const ok = document.execCommand('copy');
-        document.body.removeChild(temp);
-        return ok;
-      } catch (_) {
-        return false;
-      }
+      return deduped;
     }
 
     function renderNextBatch() {
@@ -1241,7 +966,6 @@
         const rank = start + idx + 1;
         const row = document.createElement('article');
         row.className = 'p-3.5 sm:px-4 hover:bg-slate-50/90 dark:hover:bg-zinc-900/80 transition-colors';
-        const extraCount = Array.isArray(art.similarSources) ? art.similarSources.length : 0;
 
         row.innerHTML = `
           <div class="flex items-start justify-between gap-3">
@@ -1251,11 +975,6 @@
                 <span class="font-medium text-emerald-700 dark:text-emerald-400">${esc(art.domain)}</span>
                 <span>•</span>
                 <span>${esc(formatDate(art.publishedAt))}</span>
-                ${
-                  extraCount > 0
-                    ? `<span class="px-1.5 py-0.2 rounded bg-slate-100 dark:bg-zinc-800 text-[10px] text-slate-600 dark:text-zinc-300">+${extraCount} similar</span>`
-                    : ''
-                }
               </div>
               <a
                 href="${esc(art.url)}"
@@ -1270,14 +989,6 @@
                   ? `<p class="text-xs text-slate-500 dark:text-zinc-400 line-clamp-2">${esc(art.snippet)}</p>`
                   : ''
               }
-              <div class="flex items-center gap-3 pt-0.5 text-[11px]">
-                <button type="button" data-copy-url="${esc(art.url)}" class="copy-item-btn text-slate-500 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer">
-                  Copy link
-                </button>
-                <button type="button" data-mute-domain="${esc(art.domain)}" class="mute-item-btn text-slate-500 dark:text-zinc-400 hover:text-rose-500 cursor-pointer">
-                  Mute ${esc(art.domain)}
-                </button>
-              </div>
             </div>
             <a
               href="${esc(art.url)}"
@@ -1290,158 +1001,24 @@
             </a>
           </div>
         `;
-
-        const copyBtn = row.querySelector('.copy-item-btn');
-        if (copyBtn) {
-          copyBtn.addEventListener('click', () => {
-            const ok = copyTextToClipboard(art.url);
-            setStatus(ok ? 'Headline link copied.' : `Link: ${art.url}`, 'info');
-          });
-        }
-
-        const muteBtn = row.querySelector('.mute-item-btn');
-        if (muteBtn) {
-          muteBtn.addEventListener('click', () => muteDomain(art.domain));
-        }
-
         container.appendChild(row);
       });
 
       state.rendered += nextSlice.length;
       updatePaginationUI();
     }
-    async function scourNews(forceLive = false) {
-      if (state.loading) return;
 
-      const dateInfo = parseDateInput($('dateInput').value);
-      if (dateInfo.error) {
-        setStatus(dateInfo.error, 'warn');
-        return;
-      }
+    function updatePaginationUI() {
+      const total = state.articles.length;
+      $('shownCount').textContent = String(state.rendered);
+      $('totalResultsCount').textContent = String(total);
 
-      const rangeInfo = parseRangeDates();
-      if (rangeInfo.error) {
-        setStatus(rangeInfo.error, 'warn');
-        return;
-      }
-
-      state.keyword = $('keywordInput').value.trim();
-      state.sort = $('sortSelect').value;
-      clearStatus();
-      setLoading(true);
-      state.loading = true;
-
-      const queryText = buildQueryTerms();
-      const rangeTag = rangeInfo.active ? `${rangeInfo.fromInfo.label} - ${rangeInfo.toInfo.label}` : dateInfo.label;
-      const cacheKey = `${state.apiConfig.provider}|${state.selectedTopics.slice().sort().join(',')}|${state.keyword.toLowerCase()}|${rangeTag}`;
-
-      try {
-        const cached = !forceLive ? readLocalCache(cacheKey) : null;
-        let rawItems = cached ? cached.articles : null;
-        let usedCache = Boolean(rawItems);
-        let sourceLabel = usedCache ? 'Local PC Cache' : 'Live Feed';
-        let cacheAgeText = usedCache ? formatCacheAge(cached.ageMs) : 'Fresh fetch';
-
-        if (!rawItems) {
-          try {
-            if (!dateInfo.isArchive && !rangeInfo.active && state.apiConfig.provider !== 'gdelt' && state.apiConfig.apiKey) {
-              rawItems = await fetchFromCustomProvider(queryText);
-              sourceLabel = state.apiConfig.provider === 'newsdata' ? 'NewsData.io' : 'GNews.io';
-            } else {
-              rawItems = await fetchFromGdelt(queryText, dateInfo, rangeInfo);
-              sourceLabel = rangeInfo.active
-                ? `GDELT Range (${rangeTag})`
-                : dateInfo.isArchive
-                  ? `GDELT Archive (${dateInfo.label})`
-                  : 'GDELT DOC 2.0';
-            }
-
-            if (Array.isArray(rawItems) && rawItems.length) {
-              writeLocalCache(cacheKey, rawItems);
-              cacheAgeText = 'Fresh fetch';
-            } else {
-              rawItems = buildMatchingFallback(dateInfo, state.keyword);
-              sourceLabel = 'Local Sample Set';
-              cacheAgeText = 'Sample fallback';
-            }
-          } catch (_) {
-            rawItems = buildMatchingFallback(dateInfo, state.keyword);
-            sourceLabel = 'Local Sample Set';
-            cacheAgeText = 'Sample fallback';
-          }
-        }
-
-        state.rawFetchedItems = Array.isArray(rawItems) ? rawItems : [];
-        const processed = deduplicateAndSort(state.rawFetchedItems, state.sort, state.keyword);
-        state.articles = processed;
-        state.rendered = 0;
-
-        $('feedContainer').innerHTML = '';
-        $('resultsMeta').classList.remove('hidden');
-        $('dateTag').textContent = rangeTag;
-        $('cacheAgeTag').textContent = cacheAgeText;
-        $('sourceTag').textContent = sourceLabel;
-
-        try {
-          window.history.replaceState({}, '', buildShareUrl());
-        } catch (_) {}
-
-        if (!processed.length) {
-          $('feedContainer').innerHTML = `
-            <div class="p-8 text-center space-y-1">
-              <p class="text-sm font-medium">No matching headlines found</p>
-              <p class="text-xs text-slate-500 dark:text-zinc-400">Try another topic, clear the keyword, or switch the date.</p>
-            </div>
-          `;
-          $('scrollSentinel').classList.add('hidden');
-          $('shownCount').textContent = '0';
-          $('totalResultsCount').textContent = '0';
-        } else {
-          renderNextBatch();
-          if (usedCache) {
-            setStatus(`Loaded ${processed.length} headlines instantaneously (${cacheAgeText}).`, 'info');
-          }
-        }
-      } finally {
-        setLoading(false);
-        state.loading = false;
-      }
-    }
-
-    function copySnapshotText() {
-      if (!state.articles.length) {
-        setStatus('Run a search first to copy a headline snapshot.', 'warn');
-        return;
-      }
-      const lines = state.articles.map((a, i) => `${i + 1}. ${a.title} (${a.domain}) - ${a.url}`);
-      const ok = copyTextToClipboard(lines.join('\n'));
-      setStatus(ok ? `Copied ${state.articles.length} headlines as text.` : 'Could not copy snapshot text.', 'success');
-    }
-
-    function exportSnapshotJson() {
-      if (!state.articles.length) {
-        setStatus('Run a search first to export JSON.', 'warn');
-        return;
-      }
-      try {
-        const payload = {
-          app: 'Anurag news v2',
-          exportedAt: new Date().toISOString(),
-          count: state.articles.length,
-          headlines: state.articles.map(({ _tokens, ...rest }) => rest)
-        };
-        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'anurag-news-snapshot.json';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-        setStatus(`Exported ${state.articles.length} headlines as JSON.`, 'success');
-      } catch (_) {
-        setStatus('JSON export is not supported in this browser frame.', 'warn');
+      const sentinel = $('scrollSentinel');
+      if (state.rendered < total) {
+        sentinel.classList.remove('hidden');
+        $('loadMoreBtn').textContent = `Load Next ${Math.min(PAGE_SIZE, total - state.rendered)}`;
+      } else {
+        sentinel.classList.add('hidden');
       }
     }
 
@@ -1577,62 +1154,23 @@
         setStatus('Archive date set to 20/11/2020. Click Scour News to fetch.', 'info');
       });
 
-      $('toggleRangeBtn').addEventListener('click', () => {
-        const row = $('dateRangeRow');
-        const opening = row.classList.contains('hidden');
-        row.classList.toggle('hidden', !opening);
-        row.classList.toggle('grid', opening);
-      });
-
-      $('shareLinkBtn').addEventListener('click', copyShareLink);
-      $('refreshLiveBtn').addEventListener('click', () => scourNews(true));
-      $('copySnapshotBtn').addEventListener('click', copySnapshotText);
-      $('exportJsonBtn').addEventListener('click', exportSnapshotJson);
-
-      $('resetFiltersBtn').addEventListener('click', () => {
-        state.selectedTopics = [];
-        state.keyword = '';
-        state.sort = 'relevant';
-        $('keywordInput').value = '';
-        $('dateInput').value = '';
-        $('fromDateInput').value = '';
-        $('toDateInput').value = '';
-        $('calendarInput').value = '';
-        $('sortSelect').value = 'relevant';
-        renderTopics();
-        try {
-          window.history.replaceState({}, '', window.location.pathname);
-        } catch (_) {}
-        setStatus('Filters reset. Pick topics or a keyword and click Scour News.', 'info');
-      });
-
-      document.addEventListener('keydown', (e) => {
-        const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
-        const isTyping = tag === 'input' || tag === 'textarea' || tag === 'select';
-        if (isTyping) return;
-        if (e.key === '/') {
-          e.preventDefault();
-          $('keywordInput').focus();
-        } else if (e.key === 'r' || e.key === 'R') {
-          $('resetFiltersBtn').click();
-        }
-      });
-
       $('sortSelect').addEventListener('change', () => {
         state.sort = $('sortSelect').value;
-        if (state.rawFetchedItems.length) {
-          reprocessCurrentArticles();
+        if (state.articles.length) {
+          state.articles = deduplicateAndSort(state.articles, state.sort, state.keyword);
+          state.rendered = 0;
+          $('feedContainer').innerHTML = '';
+          renderNextBatch();
         }
       });
 
-      $('scourBtn').addEventListener('click', () => scourNews(false));
+      $('scourBtn').addEventListener('click', scourNews);
       $('loadMoreBtn').addEventListener('click', renderNextBatch);
 
       $('openSettingsBtn').addEventListener('click', openSettingsModal);
       $('closeSettingsBtn').addEventListener('click', closeSettingsModal);
       $('cancelSettingsBtn').addEventListener('click', closeSettingsModal);
       $('saveSettingsBtn').addEventListener('click', saveSettingsModal);
-      $('clearCacheBtn').addEventListener('click', clearLocalCache);
       $('providerSelect').addEventListener('change', toggleKeyField);
       $('copyManifestBtn').addEventListener('click', copyWebManifestSnippet);
 
@@ -1672,13 +1210,6 @@
 
     function clearStatus() {
       $('statusBanner').classList.add('hidden');
-    }
-
-    function clearLocalCache() {
-      try {
-        localStorage.removeItem(STORAGE.CACHE);
-      } catch (_) {}
-      setStatus('Cleared cached news entries on your PC.', 'success');
     }
 
     function copyWebManifestSnippet() {
