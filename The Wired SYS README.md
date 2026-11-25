@@ -1,4 +1,4 @@
-# Anurag news v2
+# The wired sys
 
 A fast, zero-AI-summary news finder that runs in a single `index.html` file and uses the visitor's own browser (`localStorage`) for caching, keyword matching, deduplication, and sorting.
 
